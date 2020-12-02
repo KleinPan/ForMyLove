@@ -34,9 +34,9 @@ namespace ForMyLove
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             StartAnimation(canvas);
-           
 
 
+            ReadText();
             PalyMusic();
 
 
@@ -141,11 +141,11 @@ namespace ForMyLove
 
         }
 
-        void ReadTest()
+        void ReadText()
         {
             string fileName = "Content.txt";
             string fileFullPath = currentPath + "\\" + fileName;
-            if (File.Exists(fileFullPath))
+            if (!File.Exists(fileFullPath))
             {
                 String data = "我一直在等待你的出现^" +
    "谢谢你选择了我^" +

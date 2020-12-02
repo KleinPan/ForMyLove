@@ -13,5 +13,14 @@ namespace ForMyLove
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+
+            var screenAss = Screen.AllScreens[1];
+            var Left = screenAss.WorkingArea.Left;
+            var Top = screenAss.WorkingArea.Top;
+        }
     }
 }

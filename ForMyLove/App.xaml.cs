@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media.Animation;
 
 namespace ForMyLove
 {
@@ -17,10 +18,22 @@ namespace ForMyLove
         {
             base.OnStartup(e);
 
+            Timeline.DesiredFrameRateProperty.OverrideMetadata(
+               typeof(Timeline),
+               new FrameworkPropertyMetadata { DefaultValue = 24 }
+               );
 
-            var screenAss = Screen.AllScreens[1];
-            var Left = screenAss.WorkingArea.Left;
-            var Top = screenAss.WorkingArea.Top;
+            var Left = SystemParameters.WorkArea.Left;
+            var Top = SystemParameters.WorkArea.Top;
+            var right = SystemParameters.WorkArea.Right;
+            var buttom = SystemParameters.WorkArea.Bottom;
+
+            MainWindow window = new MainWindow();
+            window.Left = Left;
+            window.Top = Top;
+            window.Width = right;
+            window.Height = buttom;
+            window.Show();
         }
     }
 }

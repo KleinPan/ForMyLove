@@ -1,45 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace ForMyLove
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+    /// <summary> Interaction logic for MainWindow.xaml </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
         }
-        MediaPlayer mp = new MediaPlayer();
-        string currentPath = System.IO.Directory.GetCurrentDirectory();
-        string content = "";
+
+        private MediaPlayer mp = new MediaPlayer();
+        private string currentPath = System.IO.Directory.GetCurrentDirectory();
+        private string content = "";
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             StartAnimation(canvas);
-
-
-            ReadText();
-            PalyMusic();
-
-
+            
+            //ReadText();
+            //StartTextAsync(content.Split('^'));
+            //PalyMusic();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -48,7 +39,7 @@ namespace ForMyLove
                 Close();
         }
 
-        void StartAnimation(Canvas panel)
+        private void StartAnimation(Canvas panel)
         {
             Random random = new Random();
             Task.Factory.StartNew(new Action(() =>
@@ -72,12 +63,19 @@ namespace ForMyLove
                             panel.Children.Add(pack);
                             int seconds = random.Next(20, 30);
                             pack.BeginAnimation(OpacityProperty, new DoubleAnimation(0, 1, TimeSpan.FromSeconds(1)));
-                            DoubleAnimationUsingPath doubleAnimation = new DoubleAnimationUsingPath()        //下降动画
+
+                            DoubleAnimationUsingPath doubleAnimation = new DoubleAnimationUsingPath()        //下降动画,基于路径的动画
                             {
                                 Duration = new Duration(new TimeSpan(0, 0, seconds)),
                                 RepeatBehavior = RepeatBehavior.Forever,
-                                PathGeometry = new PathGeometry(new List<PathFigure>() { new PathFigure(new Point(left, 0), new List<PathSegment>() { new LineSegment(new Point(left, panel.ActualHeight), false) }, false) }),
-                                Source = PathAnimationSource.Y
+                                PathGeometry = new PathGeometry(new List<PathFigure>() 
+                                { 
+                                    new PathFigure(new Point(left, 0), new List<PathSegment>() 
+                                    { 
+                                        new LineSegment(new Point(left, panel.ActualHeight), false) 
+                                    }, false) 
+                                }),
+                                Source = PathAnimationSource.Y//使用路径的Y坐标
                             };
                             pack.BeginAnimation(Canvas.TopProperty, doubleAnimation);
                             DoubleAnimation doubleAnimation1 = new DoubleAnimation(360, new Duration(new TimeSpan(0, 0, 10)))              //旋转动画
@@ -106,29 +104,22 @@ namespace ForMyLove
             }
         }
 
-        void PalyMusic()
+        private void PalyMusic()
         {
-            
             string fileName = "Sound.mp3";
             string fileFull = currentPath + "\\" + fileName;
             if (File.Exists(fileFull))
             {
-
-
             }
             else
             {
-
                 string uri = "https://m10.music.126.net/20201202180214/63b0bca899174f6d037b339d54de0fcd/ymusic/obj/w5zDlMODwrDDiGjCn8Ky/3058386868/8e33/8aff/1ef9/58442a9db922749d228d4e84a6c73269.mp3";
 
                 HttpDownloadHelper.DownloadLittleAsync(uri, currentPath, fileName);
-
-
             }
             Task.Run(() =>
             {
                 Thread.Sleep(1000);
-
 
                 Application.Current.Dispatcher.BeginInvoke(() =>
                 {
@@ -136,22 +127,25 @@ namespace ForMyLove
                     mp.Play();
                     mp.MediaEnded += delegate { mp.Position = TimeSpan.FromSeconds(0); mp.Play(); };
                 });
-
             });
-
         }
 
-        void ReadText()
+        private void ReadText()
         {
             string fileName = "Content.txt";
             string fileFullPath = currentPath + "\\" + fileName;
             if (!File.Exists(fileFullPath))
             {
-                String data = "我一直在等待你的出现^" +
-   "谢谢你选择了我^" +
-   "此生不换^" +
-   "执子之手，与子偕老^" +
-   "携手到永远……";
+                //             String data = "我一直在等待你的出现^" +
+                //"谢谢你选择了我^" +
+                //"此生不换^" +
+                //"执子之手，与子偕老^" +
+                //"携手到永远……";
+                String data = "此处^" +
+                "填写^" +
+                "一些^" +
+                "肉麻的^" +
+                "情话……";
 
                 File.WriteAllText(fileFullPath, data);
             }
@@ -159,7 +153,6 @@ namespace ForMyLove
             {
                 content = File.ReadAllText(fileFullPath);
             }
-            
         }
     }
 }

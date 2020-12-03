@@ -25,22 +25,32 @@ namespace ForMyLove
 
         public static async void DownloadLittleAsync(string downloadUrl, string filePath, string fileName)
         {
-            var httpclient = HttpDownloadHelper.HttpClient;
 
-            //url = url + "?";
-
-            var response = httpclient.GetByteArrayAsync(downloadUrl).Result;
-
-            if (File.Exists(filePath + "//" + fileName))
+            try
             {
-                File.Delete(filePath + "//" + fileName);
-            }
-            System.IO.FileStream fs;
+                var httpclient = HttpDownloadHelper.HttpClient;
 
-            fs = new System.IO.FileStream(filePath + "//" + fileName, System.IO.FileMode.CreateNew);
-            fs.Write(response, 0, response.Length);
-            fs.Close();
-            return;
+                //url = url + "?";
+
+                var response = httpclient.GetByteArrayAsync(downloadUrl).Result;
+
+                if (File.Exists(filePath + "//" + fileName))
+                {
+                    File.Delete(filePath + "//" + fileName);
+                }
+                System.IO.FileStream fs;
+
+                fs = new System.IO.FileStream(filePath + "//" + fileName, System.IO.FileMode.CreateNew);
+                fs.Write(response, 0, response.Length);
+                fs.Close();
+                return;
+            }
+            catch (Exception)
+            {
+
+               
+            }
+         
         }
 
     }

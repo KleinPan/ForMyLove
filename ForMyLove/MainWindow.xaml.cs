@@ -28,9 +28,9 @@ namespace ForMyLove
         {
             StartAnimation(canvas);
             
-            //ReadText();
-            //StartTextAsync(content.Split('^'));
-            //PalyMusic();
+            ReadText();
+            StartTextAsync(content.Split('^'));
+            PalyMusic();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -113,9 +113,18 @@ namespace ForMyLove
             }
             else
             {
-                string uri = "https://m10.music.126.net/20201202180214/63b0bca899174f6d037b339d54de0fcd/ymusic/obj/w5zDlMODwrDDiGjCn8Ky/3058386868/8e33/8aff/1ef9/58442a9db922749d228d4e84a6c73269.mp3";
+                try
+                {
+                    string uri = "https://m10.music.126.net/20201202180214/63b0bca899174f6d037b339d54de0fcd/ymusic/obj/w5zDlMODwrDDiGjCn8Ky/3058386868/8e33/8aff/1ef9/58442a9db922749d228d4e84a6c73269.mp3";
+                    HttpDownloadHelper.DownloadLittleAsync(uri, currentPath, fileName);
+                }
+                catch (Exception)
+                {
 
-                HttpDownloadHelper.DownloadLittleAsync(uri, currentPath, fileName);
+                    
+                }
+
+               
             }
             Task.Run(() =>
             {

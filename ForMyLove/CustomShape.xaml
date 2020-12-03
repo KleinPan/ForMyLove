@@ -7,15 +7,15 @@
              mc:Ignorable="d"  Width="100" Height="100"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <!--<Path Data="M823.652174,0C728.375652,0 642.448696,39.17913 581.008696,102.845217 519.568696,39.17913 433.641739,0 338.365217,0 151.373913,0 0,178.086957 0,365.078261 0,908.243478 581.008696,1024 581.008696,1024 581.008696,1024 1162.017391,859.269565 1162.017391,365.078261 1162.017391,178.086957 1010.643478,0 823.652174,0z" Stretch="Uniform">
+        <Path Data="M823.652174,0C728.375652,0 642.448696,39.17913 581.008696,102.845217 519.568696,39.17913 433.641739,0 338.365217,0 151.373913,0 0,178.086957 0,365.078261 0,908.243478 581.008696,1024 581.008696,1024 581.008696,1024 1162.017391,859.269565 1162.017391,365.078261 1162.017391,178.086957 1010.643478,0 823.652174,0z" Stretch="Uniform">
             <Path.Fill>
                 <RadialGradientBrush>
                     <GradientStop Offset="1" Color="#FFFFA7A7" />
                     <GradientStop Color="#FFFFB1B1" />
                 </RadialGradientBrush>
             </Path.Fill>
-        </Path>-->
-        <Image>
+        </Path>
+        <!--<Image>
             <Image.Source>
                 <DrawingImage>
                     <DrawingImage.Drawing>
@@ -233,6 +233,6 @@
                     </DrawingImage.Drawing>
                 </DrawingImage>
             </Image.Source>
-        </Image>
+        </Image>-->
     </Grid>
 </UserControl>

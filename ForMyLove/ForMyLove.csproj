@@ -6,8 +6,9 @@
     <UseWPF>true</UseWPF>
     <AssemblyName>ForMyLove</AssemblyName>
     <RootNamespace>ForMyLove</RootNamespace>
+    <ApplicationIcon>无标题.ico</ApplicationIcon>
   </PropertyGroup>
- 
-    
+
   
+
 </Project>

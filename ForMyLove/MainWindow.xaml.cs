@@ -153,8 +153,8 @@ namespace ForMyLove
                 String data = "此处^" +
                 "填写^" +
                 "一些^" +
-                "肉麻的^" +
-                "情话……";
+                "浪漫的^" +
+                "话语……";
 
                 File.WriteAllText(fileFullPath, data);
             }
